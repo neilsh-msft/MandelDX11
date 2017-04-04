@@ -91,7 +91,7 @@ HWND                                g_hWnd = NULL;
 D3D_DRIVER_TYPE                     g_driverType = D3D_DRIVER_TYPE_NULL;
 ID3D11Device*                       g_pd3dDevice = NULL;
 ID3D11DeviceContext*                g_pImmediateContext = NULL ;
-
+D3D_FEATURE_LEVEL					g_featureLevel;
 IDXGISwapChain*                     g_pSwapChain = NULL;
 
 
@@ -313,21 +313,94 @@ HRESULT InitDevice()
     //sd.Windowed = FALSE;
     //sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
+	const D3D_FEATURE_LEVEL FeatureLevels[] = { /* D3D_FEATURE_LEVEL_11_1, */ D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL_10_0 };
+/*
+	hr = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, createDeviceFlags, FeatureLevels, _countof(FeatureLevels),
+		D3D11_SDK_VERSION, &g_pd3dDevice, &g_featureLevel, &g_pImmediateContext);
+	if (hr == E_INVALIDARG)
+	{
+		// DirectX 11.0 Runtime doesn't recognize D3D_FEATURE_LEVEL_11_1 as a valid value
+		hr = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, 0, &FeatureLevels[1], _countof(FeatureLevels) - 1,
+			D3D11_SDK_VERSION, &g_pd3dDevice, &g_featureLevel, &g_pImmediateContext);
+	}
+
+	if (FAILED(hr))
+	{
+		printf("Failed creating Direct3D 11 device %08X\n", hr);
+		return -1;
+	}
+
+	// Verify compute shader is supported
+	if (g_pd3dDevice->GetFeatureLevel() < D3D_FEATURE_LEVEL_11_0)
+	{
+		D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS hwopts = { 0 };
+		(void)g_pd3dDevice->CheckFeatureSupport(D3D11_FEATURE_D3D10_X_HARDWARE_OPTIONS, &hwopts, sizeof(hwopts));
+		if (!hwopts.ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x)
+		{
+			g_pd3dDevice->Release();
+			printf("DirectCompute is not supported by this device\n");
+			return -1;
+		}
+	}
 
 
-    D3D_FEATURE_LEVEL FeatureLevels =   D3D_FEATURE_LEVEL_11_0;
+	IDXGIDevice * pDXGIDevice = nullptr;
+	hr = g_pd3dDevice->QueryInterface(__uuidof(IDXGIDevice), (void **)&pDXGIDevice);
+	if (FAILED(hr))
+		return hr;
+
+	IDXGIAdapter * pDXGIAdapter = nullptr;
+	hr = pDXGIDevice->GetAdapter(&pDXGIAdapter);
+	if (FAILED(hr))
+		return hr;
+
+	IDXGIFactory * pIDXGIFactory = nullptr;
+	hr = pDXGIAdapter->GetParent(__uuidof(IDXGIFactory), (void **)&pIDXGIFactory);
+	if (FAILED(hr))
+		return hr;
+
+	hr = pIDXGIFactory->CreateSwapChain(g_pd3dDevice, &sd, &g_pSwapChain);
+	if (FAILED(hr))
+		return hr;
+*/
+/*
+	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
+
+	swapChainDesc.Width = static_cast<UINT>(m_d3dRenderTargetSize.Width);
+	swapChainDesc.Height = static_cast<UINT>(m_d3dRenderTargetSize.Height);
+	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+	swapChainDesc.Stereo = false;
+	swapChainDesc.SampleDesc.Count = 1; // Don't use multi-sampling.
+	swapChainDesc.SampleDesc.Quality = 0;
+	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	swapChainDesc.BufferCount = 2;
+	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+	swapChainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_FOREGROUND_LAYER;
+	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_PREMULTIPLIED;
+	swapChainDesc.Scaling = DXGI_SCALING_NONE;
+
+	ComPtr<IDXGISwapChain1> swapChain;
+	HRESULT hr = dxgiFactory->CreateSwapChainForCoreWindow(
+		m_d3dDevice.Get(),
+		reinterpret_cast<IUnknown*>(m_window.Get()),
+		&swapChainDesc,
+		nullptr,
+		&swapChain
+	);
+*/
 
     for( UINT driverTypeIndex = 0; driverTypeIndex < numDriverTypes; driverTypeIndex++ )
     {
         g_driverType = driverTypes[driverTypeIndex];
-        hr = D3D11CreateDeviceAndSwapChain( NULL, g_driverType, NULL, createDeviceFlags, &FeatureLevels,1,
-                                            D3D11_SDK_VERSION, &sd, &g_pSwapChain, &g_pd3dDevice, NULL, &g_pImmediateContext );
+        hr = D3D11CreateDeviceAndSwapChain( nullptr, g_driverType, NULL, createDeviceFlags, FeatureLevels, _countof(FeatureLevels),
+                                            D3D11_SDK_VERSION, &sd, &g_pSwapChain, &g_pd3dDevice, &g_featureLevel, &g_pImmediateContext ); 
+											// win10 doesn't like the swap chain descriptor
         if( SUCCEEDED( hr ) )
             break;
     }
     if( FAILED( hr ) )
         return hr;
-
 
     // check if GPU supports doubles
     D3D11_FEATURE_DATA_DOUBLES fdDoubleSupport;
