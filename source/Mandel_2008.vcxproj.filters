@@ -15,7 +15,12 @@
     <ClCompile Include="mandel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="mandel.hlsl" />
-    <CustomBuild Include="mandel_float.hlsl" />
+    <FxCompile Include="CSMandelJulia_scalar.hlsl" />
+    <FxCompile Include="CSMandelJulia_scalarDouble1.hlsl" />
+    <FxCompile Include="CSMandelJulia_scalarDouble2.hlsl" />
+    <FxCompile Include="CSMandelJulia_scalarFloat.hlsl" />
+    <FxCompile Include="CSMandelJulia_vector.hlsl" />
+    <FxCompile Include="CSMandelJulia_vectorDouble.hlsl" />
+    <FxCompile Include="CSMandelJulia_vectorFloat.hlsl" />
   </ItemGroup>
 </Project>

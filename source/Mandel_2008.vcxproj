@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -35,32 +35,32 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -100,36 +100,42 @@
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
     <ExecutablePath>c:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Utilities\bin\x86;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(OutDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+    <IncludePath>$(OutDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>Release\</OutDir>
     <IntDir>Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+    <IncludePath>$(OutDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+    <IncludePath>$(OutDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
     <OutDir>$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+    <IncludePath>$(OutDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+    <IncludePath>$(OutDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -176,7 +182,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/IGNORE:4089 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3dcompiler.lib;dxguid.lib;d3dx9d.lib;d3d9.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3dcompiler.lib;dxguid.lib;d3d11.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -238,7 +244,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/IGNORE:4089 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3dcompiler.lib;dxguid.lib;d3dx9.lib;d3d9.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3dcompiler.lib;dxguid.lib;d3d11.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -269,7 +275,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/IGNORE:4089 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3dcompiler.lib;dxerr.lib;dxguid.lib;d3dx9.lib;d3d9.lib;winmm.lib;comctl32.lib;d3dx11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3dcompiler.lib;dxerr.lib;dxguid.lib;d3d11.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -302,7 +308,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/IGNORE:4089 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3dcompiler.lib;dxguid.lib;d3dx9.lib;d3d9.lib;winmm.lib;comctl32.lib;d3dx11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3dcompiler.lib;dxguid.lib;d3d11.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -318,73 +324,74 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mandel.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      <PrecompiledHeader>
       </PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-<!--
-mandel.hlsl
-    CSMandelJulia_scalarFloat
-    CSMandelJulia_scalarDouble1
-    CSMandelJulia_scalarDouble2
-    CSMandelJulia_vectorFloat
-    CSMandelJulia_vectorDouble
-
-mandel_float.hlsl
-    CSMandelJulia_scalar
-    CSMandelJulia_vector
--->
-
-    <CustomBuild Include="CSMandelJulia_scalarFloat.hlsl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Tcs_5_0 /E CSMandelJulia_scalarFloat /Zpr /Gfp /Fo $(ProjectDir)\CSMandelJulia_scalarFloat.fxc /Fh $(ProjectDir)\CSMandelJulia_scalarFloat.fh /Fc $(OutDir)CSMandelJulia_scalarFloat.hla  %(FullPath)
-</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)CSMandelJulia_scalarFloat.fxc;$(ProjectDir)CSMandelJulia_scalarFloat.fh;%(Outputs)</Outputs>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="CSMandelJulia_scalarDouble1.hlsl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Tcs_5_0 /E CSMandelJulia_scalarDouble1 /Zpr /Gfp /Fo $(ProjectDir)\CSMandelJulia_scalarDouble1.fxc /Fh $(ProjectDir)\CSMandelJulia_scalarDouble1.fh /Fc $(OutDir)CSMandelJulia_scalarDouble1.hla  %(FullPath)
-</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)CSMandelJulia_scalarDouble1.fxc;$(ProjectDir)CSMandelJulia_scalarDouble1.fh;%(Outputs)</Outputs>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="CSMandelJulia_scalarDouble2.hlsl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Tcs_5_0 /E CSMandelJulia_scalarDouble2 /Zpr /Gfp /Fo $(ProjectDir)\CSMandelJulia_scalarDouble2.fxc /Fh $(ProjectDir)\CSMandelJulia_scalarDouble2.fh /Fc $(OutDir)CSMandelJulia_scalarDouble2.hla  %(FullPath)
-</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)CSMandelJulia_scalarDouble2.fxc;$(ProjectDir)CSMandelJulia_scalarDouble2.fh;%(Outputs)</Outputs>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="CSMandelJulia_vectorFloat.hlsl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Tcs_5_0 /E CSMandelJulia_vectorFloat /Zpr /Gfp /Fo $(ProjectDir)\CSMandelJulia_vectorFloat.fxc /Fh $(ProjectDir)\CSMandelJulia_vectorFloat.fh /Fc $(OutDir)CSMandelJulia_vectorFloat.hla  %(FullPath)
-</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)CSMandelJulia_vectorFloat.fxc;$(ProjectDir)CSMandelJulia_vectorFloat.fh;%(Outputs)</Outputs>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="CSMandelJulia_vectorDouble.hlsl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Tcs_5_0 /E CSMandelJulia_vectorDouble /Zpr /Gfp /Fo $(ProjectDir)\CSMandelJulia_vectorDouble.fxc /Fh $(ProjectDir)\CSMandelJulia_vectorDouble.fh /Fc $(OutDir)CSMandelJulia_vectorDouble.hla  %(FullPath)
-</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)CSMandelJulia_vectorDouble.fxc;$(ProjectDir)CSMandelJulia_vectorDouble.fh;%(Outputs)</Outputs>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="CSMandelJulia_scalar.hlsl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Tcs_5_0 /E CSMandelJulia_scalar /Zpr /Gfp /Fo $(ProjectDir)\CSMandelJulia_scalar.fxc /Fh $(ProjectDir)\CSMandelJulia_scalar.fh /Fc $(OutDir)CSMandelJulia_scalar.hla  %(FullPath)
-</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)CSMandelJulia_scalar.fxc;$(ProjectDir)CSMandelJulia_scalar.fh;%(Outputs)</Outputs>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="CSMandelJulia_vector.hlsl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Tcs_5_0 /E CSMandelJulia_vector /Zpr /Gfp /Fo $(ProjectDir)\CSMandelJulia_vector.fxc /Fh $(ProjectDir)\CSMandelJulia_vector.fh /Fc $(OutDir)CSMandelJulia_vector.hla  %(FullPath)
-</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)CSMandelJulia_vector.fxc;$(ProjectDir)CSMandelJulia_vector.fh;%(Outputs)</Outputs>
-    </CustomBuild>
+    <FxCompile Include="CSMandelJulia_scalar.hlsl">
+      <ShaderType>Compute</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <HeaderFileOutput>$(OutDir)%(Filename).fh</HeaderFileOutput>
+      <ObjectFileOutput>
+      </ObjectFileOutput>
+      <AdditionalOptions>/Zpr /Gfp</AdditionalOptions>
+      <EntryPointName>CSMandelJulia_scalar</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="CSMandelJulia_scalarDouble1.hlsl">
+      <ShaderType>Compute</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <HeaderFileOutput>$(OutDir)%(Filename).fh</HeaderFileOutput>
+      <ObjectFileOutput>
+      </ObjectFileOutput>
+      <AdditionalOptions>/Zpr /Gfp</AdditionalOptions>
+      <EntryPointName>CSMandelJulia_scalarDouble1</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="CSMandelJulia_scalarDouble2.hlsl">
+      <ShaderType>Compute</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <HeaderFileOutput>$(OutDir)%(Filename).fh</HeaderFileOutput>
+      <ObjectFileOutput>
+      </ObjectFileOutput>
+      <AdditionalOptions>/Zpr /Gfp</AdditionalOptions>
+      <EntryPointName>CSMandelJulia_scalarDouble2</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="CSMandelJulia_scalarFloat.hlsl">
+      <ShaderType>Compute</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <HeaderFileOutput>$(OutDir)%(Filename).fh</HeaderFileOutput>
+      <ObjectFileOutput>
+      </ObjectFileOutput>
+      <AdditionalOptions>/Zpr /Gfp</AdditionalOptions>
+      <EntryPointName>CSMandelJulia_scalarFloat</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="CSMandelJulia_vector.hlsl">
+      <ShaderType>Compute</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <HeaderFileOutput>$(OutDir)%(Filename).fh</HeaderFileOutput>
+      <ObjectFileOutput>
+      </ObjectFileOutput>
+      <AdditionalOptions>/Zpr /Gfp</AdditionalOptions>
+      <EntryPointName>CSMandelJulia_vector</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="CSMandelJulia_vectorDouble.hlsl">
+      <ShaderType>Compute</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <HeaderFileOutput>$(OutDir)%(Filename).fh</HeaderFileOutput>
+      <ObjectFileOutput>
+      </ObjectFileOutput>
+      <AdditionalOptions>/Zpr /Gfp</AdditionalOptions>
+      <EntryPointName>CSMandelJulia_vectorDouble</EntryPointName>
+    </FxCompile>
+    <FxCompile Include="CSMandelJulia_vectorFloat.hlsl">
+      <ShaderType>Compute</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <HeaderFileOutput>$(OutDir)%(Filename).fh</HeaderFileOutput>
+      <ObjectFileOutput>
+      </ObjectFileOutput>
+      <AdditionalOptions>/Zpr /Gfp</AdditionalOptions>
+      <EntryPointName>CSMandelJulia_vectorFloat</EntryPointName>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
