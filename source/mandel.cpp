@@ -235,6 +235,8 @@ void Resize()
   ID3D11Texture2D* pTexture;
   hr = g_pSwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), ( LPVOID* )&pTexture );
 
+  D3D11_TEXTURE2D_DESC desc = { 0 };
+  pTexture->GetDesc(&desc);
 
   // create shader unordered access view on back buffer for compute shader to write into texture
   hr = g_pd3dDevice->CreateUnorderedAccessView( pTexture, NULL, &g_pComputeOutput );
@@ -830,6 +832,10 @@ void Render()
 	}
 
 	// For CS output
+	D3D11_UNORDERED_ACCESS_VIEW_DESC desc;
+	g_pComputeOutput->GetDesc(&desc);
+
+
 	ID3D11UnorderedAccessView* aUAViews[1] = { g_pComputeOutput };
 	g_pImmediateContext->CSSetUnorderedAccessViews(0, 1, aUAViews, (UINT*)(&aUAViews));
 
